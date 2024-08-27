@@ -3,7 +3,7 @@ from random import randint
 
 # function generates a random number between 1 - 100 and returns it to the primary function
 def generate_random_number(min_num, max_num):
-    ran_num = randint(1, 100)
+    ran_num = randint(min_num, max_num)
     return ran_num
 
 # function checks generated random number against user's guess
@@ -16,13 +16,25 @@ def check_guess(random_num, user_guess):
     return correct
 
 
-# if the guess is incorrect, provide a hint - if the user has guessed > 5 times, provide an additional hint
+# if the guess is incorrect, provide a hint - if the user has guessed > 2 times, provide an additional hint
 def hint(random_num, user_guess, guess):  
-    if guess >= 5:    
+    rand_hint = randint(1,3)
+    if guess > 2 and rand_hint == 1:    
         if random_num % 2 == 0:
             print("Hint: The number is even.")    
         else:
             print("Hint: The number is odd.")
+    elif guess > 2 and rand_hint ==2:
+        if random_num % 5 == 0:
+            print("Hint: The number is a multiple of 5.")
+        else: 
+            print("Hint: The number is not a multiple of 5.")
+    elif guess > 2 and rand_hint ==3:
+        if random_num**2 < 1000:
+            print("Hint: The number squared is less than 1,000.")
+        else:
+            print("Hint: The number squared is greater than 1,000.")
+            
     if random_num < user_guess:
         print("Hint: Try a lower number.")
     else:
@@ -38,7 +50,6 @@ def main():
     print("Welcome to the Number Guessing Game!")
     print(f"I am thinking of a number between {min_num } and {max_num}. Try to guess my number!")
     random_num = generate_random_number(min_num, max_num)
-    print(random_num)
 
     # loop through the game until the user guesses correct
     while correct is False:
