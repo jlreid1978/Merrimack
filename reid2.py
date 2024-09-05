@@ -43,7 +43,7 @@ def grid(height, width, cell):
             print("|      |  " + "   |  ".join(str(i - 1) for i in range(1, width)) + "   |")
 
 
-# Requests a guess of where to fire a shot
+# Requests a guess of where to fire a shot and evaluates the value against a playable space or already guessed location
 def guess(cell):
     try:
         column_guess = int(input("What column would you like to fire upon? (X) "))
