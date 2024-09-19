@@ -3,3 +3,4 @@ test.txt
 trees.csv
 .DS_Store
 test.py
+*.pages
