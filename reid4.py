@@ -141,7 +141,6 @@ def getSong(player, user, run=True):
     for m in music:
         if m["title"] == song:
             try:
-                found = True
                 title = m["title"]
                 artist = m["artist"]
                 print(f"\n{title} by {artist}\n")
