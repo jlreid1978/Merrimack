@@ -12,4 +12,5 @@ class Bank:
 
     def addMonthlyInterest(percent):
         # EXTRA CREDIT
+        return
 

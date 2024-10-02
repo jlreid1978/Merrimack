@@ -1,6 +1,8 @@
+import random
+
 class BankUtility:
     def __init(self):
-
+        self.util = "Utility"
 
     def promptUserForString(prompt):
         # implement promptUserForString here
@@ -12,9 +14,9 @@ class BankUtility:
         return 0.0 # be sure to change this
     
     
-    def generateRandomInteger(min, max):
-        # implement generateRandomInteger here
-        return 0 # be sure to change as needed
+    def generateRandomInteger(self, min, max):
+        new_account = random.randint(min, max)
+        return new_account
     
     
     def convertFromDollarsToCents(amount):
