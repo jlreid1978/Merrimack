@@ -1,16 +1,15 @@
-import Account
-import Bank
+from Account import Account
+from Bank import Bank
 from BankManager import BankManager
 from BankUtility import BankUtility
-import CoinCollector
-from getpass import getpass
+from CoinCollector import CoinCollector
 
 
 def menu():
     selection = [
         "=====================================================",
         "1. Open an account",
-        "2. Get account informatio and balance",
+        "2. Get account information and balance",
         "3. Change PIN",
         "4. Deposit money in account",
         "5. Transfer money between accounts",
@@ -31,20 +30,9 @@ def branchOpen(manager, selection, option):
 
     if option == 1:
         print(selection[option])
-        new_account = manager.createAccount(banker)
-        try:
-            pin_one = int(getpass("Please enter a four digit pin number. "))
-            pin_two = int(getpass("Please re-enter your pin number. "))
-
-            if len(str(pin_one)) != 4 or pin_one != pin_two:
-                raise ValueError
-            
-            else:
-                print("Account Created")
-
-        except ValueError:
-            print("\n\033[31mInvalid pin format, or pin did not match, please try again.\033[0m\n")
-        print(new_account)
+        new_account, pin = manager.createAccount(banker)
+        print(f"\n\033[32mYour new account number is {new_account}.")
+        print(f"Your new pin number is {pin}.\033[0m\n")
     else:
         print(selection[option])
 
@@ -68,8 +56,7 @@ def main():
             else:
                 raise ValueError
         except ValueError:
-            print("\n\033[31mPlease enter a valid selection.\033[0m\n")
-
+            print("\n\033[31mInvalid choice\033[0m\n")
 
 
 if __name__ == "__main__":
