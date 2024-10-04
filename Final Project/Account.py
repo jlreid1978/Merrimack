@@ -1,4 +1,7 @@
 class Account:
+    
+    def __init__(self, bank, user_account):
+        self.acct_info = bank.findAccount(user_account)
     # add your attributes here
     # add methods as getters and setters for attributes
 
@@ -11,7 +14,9 @@ class Account:
         return 0 # be sure to change this
 
     def isValidPIN(pin):
-        # implement isValidPIN here
+        if Account.acct_info[0] == pin:
+            return True
+
         return False # be sure to change this
 
     # all objects have a toString method - this indicates you are providing

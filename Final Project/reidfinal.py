@@ -26,13 +26,29 @@ def menu():
 
 
 def branchOpen(manager, selection, option):
-    banker = BankUtility()
+    utility = BankUtility()
+    bank = Bank()
 
     if option == 1:
         print(selection[option])
-        new_account, pin = manager.createAccount(banker)
+        new_account, pin = bank.createAccount(utility)
         print(f"\n\033[32mYour new account number is {new_account}.")
         print(f"Your new pin number is {pin}.\033[0m\n")
+
+    elif option == 2:
+        
+        user_account, user_pin = manager.promptForAccountNumberAndPIN(bank)
+
+        print(f"User account {user_account} pin {user_pin}")
+
+        account = Account(bank, user_account)
+        if account:
+            print(f"account = {account}")
+
+        else:
+            print("No account found.")
+
+
     else:
         print(selection[option])
 
