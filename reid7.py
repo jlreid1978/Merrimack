@@ -219,7 +219,7 @@ class TreeNode:
             final_result.append(grandchildren)
             final_result.append(aligned_result[2])
 
-            # feeble attempt at adding great grand children
+            # attempt at adding great grand children (needs more development)
             if len(aligned_result) > 3:
             
                 try: 
@@ -234,7 +234,7 @@ class TreeNode:
 def addChildren(root):
     # display the existing tree
     print("\n====Creatures====")
-    root.display()
+    printAll(root)
     print("=================\n")
 
     # ask tree info
@@ -307,9 +307,9 @@ def printSelected(root):
 
     # select the appropriate comment for where the name was found in the tree
     if select == root:
-        print(f"{root} is the first of its kind")
+        print(f"\n{root} is the first of its kind")
     elif len(lineage) > 1:
-        history = "The "
+        history = "\nThe "
         phrase = " is descended from the "
         for line in lineage:
             history = history + line + phrase
@@ -318,7 +318,7 @@ def printSelected(root):
         history = history[:index]
         print(history)
     else:
-        print(f"{select} is not found. ")
+        print(f"\n\033[31m{select} is not found.\033[0m\n")
 
 
 # function to create the main menu based on if a root creature exists or not
