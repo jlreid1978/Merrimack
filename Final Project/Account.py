@@ -1,26 +1,90 @@
 class Account:
     
-    def __init__(self, bank, user_account):
-        self.acct_info = bank.findAccount(user_account)
-    # add your attributes here
-    # add methods as getters and setters for attributes
+    def __init__(self, account):
+        self._account = str(account)
+        self._first = ""
+        self._last = ""
+        self._ssn = ""
+        self._pin = ""
+        self._bal = 0
 
-    def deposit(amount):
-        # implement deposit here
-        return 0
 
-    def withdraw(amount):
-        # implement withdraw here
-        return 0 # be sure to change this
+    # getters and setters for all variables
+    def getAccount(self):
+        return self._account
 
-    def isValidPIN(pin):
-        if Account.acct_info[0] == pin:
+    def getFirst(self):
+        return self._first
+    
+
+    def getLast(self):
+        return self._last
+    
+
+    def get_ssn(self):
+        return self._ssn
+    
+
+    def getPIN(self):
+        return self._pin
+    
+
+    def getBal(self):
+        return self._bal
+    
+
+    def setFirst(self, first_name):
+        self._first = first_name
+
+    
+    def setLast(self, last_name):
+        self._last = last_name
+
+
+    def set_ssn(self, user_ssn):
+        self._ssn = user_ssn
+
+    
+    def setPIN(self, user_pin):
+        self._pin = user_pin
+
+
+    # method for making a deposit
+    def deposit(self, amount):
+        self._bal = self.bal + amount
+        return self._bal
+
+
+    # method for making a withdrawl
+    def withdraw(self, amount):
+        self.bal = self.bal = amount
+        return self._bal
+
+
+    def isValidPIN(self, pin):
+        if pin == self._pin:
             return True
 
-        return False # be sure to change this
+        return False
+    
 
-    # all objects have a toString method - this indicates you are providing
-    # your own version
+    def toString(self):
+        acct = [
+            "\n========================================\n",
+            f"Account Number: {self._account}\n",
+            f"Owner First Name: {self._first}\n",
+            f"Owner Last Name: {self._last}\n"
+            f"Owner SSN: {self._ssn}\n",
+            f"PIN: {self._pin}\n",
+            f"Balance: ${self._bal}\n"
+            "========================================\n"
+            ]
+        
+        acct_info = "".join(acct)
+
+        return acct_info
+
+
 
     def __repr__(self):
-      return "" # change this as needed
+      return self._account

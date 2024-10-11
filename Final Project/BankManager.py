@@ -21,44 +21,65 @@ class BankManager:
             "====================================================="
             ]
 
+
+    # 2 manditory method for validating account and pin
     @staticmethod
     def promptForAccountNumberAndPIN(bank):
-        user_acct = input("Please enter your account number. ")
-        user_pin = input("Please enter your PIN number. ")
+        account = None
+        valid_pin = None
 
-        return user_acct, user_pin 
+        user_acct = input("Please enter your account number. ")
+        account = bank.findAccount(user_acct)
+        if account:
+            user_pin = input("Please enter your PIN number. ")
+            valid_pin = account.isValidPIN(user_pin)
+            if valid_pin:
+                pass
+            else:
+                print("\n\033[31mInvalid PIN number\033[0m\n")
+        else:
+            print("\n\033[31mNo account found\033[0m\n")
+
+        return account, valid_pin
     
 
-    def _branchOpen(self, option):
-        utility = BankUtility()
-        bank = Bank()
+    # module to process user selection
+    def _branchOpen(self, bank, utility, option):
 
         if option == 1:
             print(self.menu[option])
-            new_account, pin = bank.createAccount(utility)
+            new_account, pin = bank.addAccountToBank(utility)
             print(f"\n\033[32mYour new account number is {new_account}.")
             print(f"Your new pin number is {pin}.\033[0m\n")
 
         elif option == 2:
+            account, valid_pin = self.promptForAccountNumberAndPIN(bank)
             
-            user_account, user_pin = self.promptForAccountNumberAndPIN(bank)
+            if account and valid_pin:
+                account_info = account.toString()
+                print(account_info)
 
-            # Do something with account and pin
-            print(f"User account {user_account} pin {user_pin}")
+        elif option == 3:
+            account, valid_pin = self.promptForAccountNumberAndPIN(bank)
+            
+            if account and valid_pin:
+                ### add replace PIN code ###  
 
-            account = Account(bank, user_account)
-            if account:
-                print(f"account = {account}")
+            
+            
 
-            else:
-                print("No account found.")
+
+
 
         else:
             print(self.menu[option])
     
 
-    # main module to run the program
+    # 1 manditory method main method to run the program
     def main(self):
+        utility = BankUtility()
+        bank = Bank()
+
         # create the menu
         while True:
             print("What do you want to do? ")
@@ -74,7 +95,7 @@ class BankManager:
                         break
                     else:
                         # runs the requested selection
-                        self._branchOpen(option)
+                        self._branchOpen(bank, utility, option)
                 else:
                     raise ValueError
             except ValueError:
