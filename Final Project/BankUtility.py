@@ -1,12 +1,11 @@
 import random
 
 class BankUtility:
-    def __init(self):
-        self.util = "Utility"
 
-    def promptUserForString(prompt):
-        # implement promptUserForString here
-        return "" # be sure to change this
+    def promptUserForString(self):
+        first = str(input("Please enter your first name. "))
+        last = str(input("Please enter your last name. "))
+        return first, last
     
     
     def promptUserForPositiveNumber(prompt):
@@ -19,9 +18,20 @@ class BankUtility:
         return new_account
     
     
-    def convertFromDollarsToCents(amount):
-        # implement convertFromDollarsToCents here
-        return 0 # be sure to change as needed
+    def convertFromDollarsToCents(self, cash):
+        cash = f"{cash:.2f}"
+        change = str(cash).split(".")
+        change = int("".join(change))
+        return change
+    
+
+    def cashFromCents(self, change):
+        if len(str(change)) > 2:
+            cash = str(change)[:-2] + "." + str(change)[-2:]
+        else:
+            cash = "0." + str(change).zfill(2)
+
+        return cash
     
     '''
     Checks if a given string is a number (long)

@@ -1,9 +1,8 @@
 from Account import Account
+from BankUtility import BankUtility
 import numpy as np
 
 class Bank:
-    __knox = {}
-
     def __init__(self):
         self.acct_min = 10000000
         self.acct_max = 99999999
@@ -11,10 +10,11 @@ class Bank:
         self.pin_max = 9999
         self.max_accounts = 5
         self.accounts = np.full(self.max_accounts, None)
+        self.utility = BankUtility()
         
 
     # method to add an element until the array is full
-    def add_to_array(self, arr, element):
+    def _add_to_array(self, arr, element):
         # Check if there's space
         if None in arr:
             arr[np.where(arr == None)[0][0]] = element
@@ -25,14 +25,13 @@ class Bank:
 
 
     # method to add account
-    def addAccountToBank(self, utility):
-        first = input("Please enter your first name. ")
-        last = input("Please enter your last name. ")
-        pin = utility.generateRandomInteger(self.pin_min, self.pin_max)
+    def addAccountToBank(self):
+        first, last = self.utility.promptUserForString()
+        pin = self.utility.generateRandomInteger(self.pin_min, self.pin_max)
         pin = str(pin).zfill(4)
 
         while True:
-            new_account = utility.generateRandomInteger(self.acct_min, self.acct_max)
+            new_account = self.utility.generateRandomInteger(self.acct_min, self.acct_max)
             if new_account not in self.accounts:
                 break
         
@@ -56,7 +55,7 @@ class Bank:
         account.set_ssn(ssn)
         account.setPIN(pin)
 
-        valid_acct = self.add_to_array(self.accounts, account)
+        valid_acct = self._add_to_array(self.accounts, account)
 
         if valid_acct:
             return account, account.getPIN()
@@ -67,18 +66,29 @@ class Bank:
     def removeAccountFromBank(self, account):
         if account in self.accounts:
             index = np.where(self.accounts == account)[0][0]
-            account[index] = None
+            self.accounts[index] = None
             return True
         return False
     
 
+    # method to find account in the accounts array
     def findAccount(self, user_account):
+        print(user_account)
         for account in  self.accounts:
+
+            #DEBUG
+            if account is not None:
+                print(account.getAccount())
+                if account.getAccount() == user_account:
+                    print("MATCH!")
+
+
             if account is not None and account.getAccount() == user_account:
                 return account
         return None
 
 
+    # bonus method to add monthly interest to all accounts
     def addMonthlyInterest(self, percent):
         # EXTRA CREDIT
         return

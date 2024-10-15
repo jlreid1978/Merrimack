@@ -1,3 +1,5 @@
+from BankUtility import BankUtility
+
 class Account:
     
     def __init__(self, account):
@@ -7,11 +9,13 @@ class Account:
         self._ssn = ""
         self._pin = ""
         self._bal = 0
+        self.utility = BankUtility()
 
 
     # getters and setters for all variables
     def getAccount(self):
         return self._account
+
 
     def getFirst(self):
         return self._first
@@ -51,16 +55,17 @@ class Account:
 
     # method for making a deposit
     def deposit(self, amount):
-        self._bal = self.bal + amount
+        self._bal = self._bal + amount
         return self._bal
 
 
     # method for making a withdrawl
     def withdraw(self, amount):
-        self.bal = self.bal = amount
+        self.bal = self._bal - amount
         return self._bal
 
 
+    # method to validate PIN
     def isValidPIN(self, pin):
         if pin == self._pin:
             return True
@@ -68,7 +73,9 @@ class Account:
         return False
     
 
+    # method to obtain account info
     def toString(self):
+        cash = self.utility.cashFromCents(self._bal)
         acct = [
             "\n========================================\n",
             f"Account Number: {self._account}\n",
@@ -76,14 +83,13 @@ class Account:
             f"Owner Last Name: {self._last}\n"
             f"Owner SSN: {self._ssn}\n",
             f"PIN: {self._pin}\n",
-            f"Balance: ${self._bal}\n"
+            f"Balance: ${cash}\n"
             "========================================\n"
             ]
         
         acct_info = "".join(acct)
 
         return acct_info
-
 
 
     def __repr__(self):
