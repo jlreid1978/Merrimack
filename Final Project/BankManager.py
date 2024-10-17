@@ -254,6 +254,7 @@ class BankManager:
             try:
                 while True:
                     percent = float(input("Please entere an annual percentage rate: "))
+                    percent = self.utility.promptUserForPositiveNumber(percent)
                     if percent:
                         interest = self.bank.addMonthlyInterest(percent)
                         if interest:
