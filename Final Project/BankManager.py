@@ -160,8 +160,8 @@ class BankManager:
 
     # module to process user selection
     def _branchOpen(self, option):
+        print(self.menu[option])
         if option == 1:
-            print(self.menu[option])
             new_account, pin = self.bank.addAccountToBank()
             print(f"\n\033[32mYour new account number is {new_account}")
             print(f"Your new pin number is {pin}\033[0m\n")
@@ -253,7 +253,7 @@ class BankManager:
         elif option == 10:
             try:
                 while True:
-                    percent = float(input("Please entere an annual percentage rate: "))
+                    percent = float(input("Please entere an annual percentage yield to add: "))
                     percent = self.utility.promptUserForPositiveNumber(percent)
                     if percent:
                         interest = self.bank.addMonthlyInterest(percent)
