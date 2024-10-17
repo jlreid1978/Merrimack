@@ -1,23 +1,30 @@
 import random
 
+# Bank Utility class to provide some small assisting methods  
 class BankUtility:
-
+    # method to prompt user for name strings
     def promptUserForString(self):
         first = str(input("Please enter your first name. "))
         last = str(input("Please enter your last name. "))
         return first, last
     
     
-    def promptUserForPositiveNumber(prompt):
-        # implement promptUserForPositiveNumber here
-        return 0.0 # be sure to change this
+    # method to check for a positive number
+    def promptUserForPositiveNumber(self, prompt):
+        if prompt < 0:
+            print("\n\033[31mAmount cannot be negative\033[0m\n")
+            raise ValueError
+                
+        return prompt
     
     
+    # method to generate a random int
     def generateRandomInteger(self, min, max):
         new_account = random.randint(min, max)
         return new_account
     
     
+    # method to convert FROM dollars TO cents
     def convertFromDollarsToCents(self, cash):
         cash = f"{cash:.2f}"
         change = str(cash).split(".")
@@ -25,6 +32,7 @@ class BankUtility:
         return change
     
 
+    # method to convert TO dollars FROM cents
     def cashFromCents(self, change):
         if len(str(change)) > 2:
             cash = str(change)[:-2] + "." + str(change)[-2:]

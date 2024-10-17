@@ -1,7 +1,7 @@
 from BankUtility import BankUtility
 
+# Account class, which holds all the account info for each instance
 class Account:
-    
     def __init__(self, account):
         self._account = str(account)
         self._first = ""
@@ -61,7 +61,7 @@ class Account:
 
     # method for making a withdrawl
     def withdraw(self, amount):
-        self.bal = self._bal - amount
+        self._bal = self._bal - amount
         return self._bal
 
 

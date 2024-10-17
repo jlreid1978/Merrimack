@@ -1,5 +1,6 @@
+# Coin Collector class processes the coin deposit option
 class CoinCollector:
-    
+    # method to parse user input into a deposit, then reject anything that is not listed
     def parseChange(self, change):
         values = {
             "P": 1,
