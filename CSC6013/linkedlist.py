@@ -70,7 +70,7 @@ class LinkedList:
             print("Current:", self.Current.Data)
         else:
             print("Empty Linked List")
-        input("----------------")
+        print("----------------")
 
 def main():
     mylist = LinkedList()
@@ -97,4 +97,4 @@ def main():
     mylist.printList("Removing next the Current")
     print("Now, do it again just to be sure you've got it!")
 
-main()
+#main()
