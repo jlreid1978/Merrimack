@@ -5,3 +5,4 @@ trees.csv
 test.py
 *.pages
 Worksheet*.pdf
+*.pyc
