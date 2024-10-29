@@ -13,13 +13,31 @@ def mathy(nums, by):
 
 # main function that initializes the array variables as well as the int variables
 def main():
-    nums = [[20, 21, 25, 28, 33, 34, 35, 36, 41, 42], [18, 54, 76, 81, 36, 48, 99]]
-    denoms = [7, 9]
-    index = 0
-    for n in nums:
-        # print statement that calls the function to process the result
-        print(f"The number of entries in {n} divisible by {denoms[index]} is {mathy(n, denoms[index])}.\n")
-        index += 1
+    nums = []
+    # obtain integers to add to the array
+    while True:
+        try:
+            num = int(input("Please input an integer value for the array. Press enter when finished filling array. "))
+            nums.append(num)
+            print(f"Array = {nums}")
+
+        except ValueError:
+            print(f"Complete array = {nums}")
+            break
+    # obtain the denomenator 
+    while True:
+        try:
+            denom = int(input("Please input an integer to divide by. "))
+            if denom <= 0:
+                raise ValueError
+            else:
+                break
+        except ValueError:
+            print("Value must be an integer > 0")
+    
+    # print statement that calls the function to process the result
+    print(f"The number of entries in {nums} divisible by {denom} is {mathy(nums, denom)}.\n")
+        
         
 
 if __name__ == "__main__":

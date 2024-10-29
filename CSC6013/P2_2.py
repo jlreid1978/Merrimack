@@ -4,14 +4,17 @@ from math import inf
 # function finds the lowest distance between all numbers in an array
 def distance(nums):
     least = inf
-
-    # check the distance between every number in the array and see if it is smaller than the previous value
-    for num in nums:
-        for i in range(len(nums)):
-            if nums[i] != num:
-                value = abs(nums[i] - num)
-                if value < least:
-                    least = value
+    # if there are not two numbers, return an error
+    if len(nums) < 2:
+        raise ValueError
+    else:
+        # check the distance between every number in the array and see if it is smaller than the previous value
+        for cur_num in nums:
+            for i in range(len(nums)):
+                if nums[i] != cur_num:
+                    value = abs(nums[i] - cur_num)
+                    if value < least:
+                        least = value
 
     # return the smallest distance found from comparison
     return least
@@ -19,9 +22,24 @@ def distance(nums):
 
 # function initializes the number arrays and prints the lowest distance found
 def main():
-    num_arrays = [[50, 120, 250, 100, 20, 300, 200], [12.4, 45.9, 8.1, 79.8, -13.64, 5.09]]
-    for nums in num_arrays:
-        print(f"The smallest distance between any two numbers in {nums} is {distance(nums)}.\n")
+    nums = []
+    while True:
+        try:
+            # ask for a float, but if value is an int, display as an int
+            num = float(input("Please input a value for the array. Press enter when finished filling array. "))
+            if num == int(num):
+                num = int(num)
+            nums.append(num)
+            print(f"Array = {nums}")
+
+        except ValueError:
+            print(f"Complete array = {nums}")
+            break
+
+    try:
+        print(f"The smallest distance between any two numbers in {nums} is {distance(nums)}\n")
+    except ValueError:
+        print("Unable to compare an array with less than two numbers")
 
 
 if __name__ == "__main__":
