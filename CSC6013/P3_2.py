@@ -30,8 +30,6 @@ def bubble_sort(A):
         # if no swap was done, then the sort is complete
         if swap == False:
             break
-    
-        
     print("\n")
 
 
