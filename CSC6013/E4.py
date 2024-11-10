@@ -1,13 +1,19 @@
 
 def DFS(V, E):
+    # initialize counter to prevent duplicate tags for stamp printing
+    a_count = None
+    # initialize a list to convert V to when it is changed to int instead of str
     index_to_letter = list(V)
-    print(V)
 
     def __visit(i, count):
+        nonlocal a_count
         V[i], count = count, count+1
         for e in E:
-            if "A" in e:
-                print(f"Vertex A visited and received the stamp {count}\n{V}")
+
+            # Every time A is visited, what the count is, and V array is at the time
+            if "A" in e and a_count != count:
+                a_count = count
+                print(f"Vertex A visited and received the stamp {count}\nV array: {V}")
             l = 0
             check = None
             for letter in index_to_letter:
@@ -21,13 +27,15 @@ def DFS(V, E):
 
         return count
 
+
     for i in range(len(V)):
         V[i] = -1
     count = 0
     for i in range(len(V)):
         if (V[i] == -1):
+            
             count = __visit(i, count)
-
+            # DFS call using Vertex A
             if index_to_letter[i] == "A":
                 print("DFS called for vertex A")
                   
