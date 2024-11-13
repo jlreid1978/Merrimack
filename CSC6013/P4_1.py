@@ -1,5 +1,6 @@
 # Jesse Reid CSC6013 coding project P4 #1
 
+# binary search function to find a specified value
 def binSearch(A, start, end, k):
     mid = (end+start)//2
     # print the mid value based on mid index
