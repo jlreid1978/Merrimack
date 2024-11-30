@@ -19,15 +19,14 @@ def lomuto(A, left, right):
 def QuickSelect(A, left, right, k):
     pvt = lomuto(A, left, right)
 
-    # Index of the k-th smallest element
+    # index of the k-th smallest element
     if pvt == k:
-        print(f"left value {A[pvt -1]}, right value {A[pvt +1]}, k-th value {A[pvt]}")
         return A[pvt]
     elif pvt > k:
-        # Search left part
+        # search left part
         return QuickSelect(A, left, pvt - 1, k)
     else:
-        # Search right part
+        # search right part
         return QuickSelect(A, pvt + 1, right, k)
 
 
