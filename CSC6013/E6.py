@@ -68,7 +68,7 @@ def russian(n, m):
 
 
 # Lomuto partition
-# 2. TracetheLomutopartitionwiththearray:
+# 2. Trace the Lomuto partition with the array:
 # a. A=[100,33,22,213,65,29,153,199,47,181,85]
 # Using A[10] = 85 as pivot the final array will be:
 # ● A = [33, 22, 65, 29, 47, 85, 153, 199, 100, 181, 213]
