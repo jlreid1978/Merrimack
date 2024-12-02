@@ -1,7 +1,4 @@
-# Array Sum
-# 1. Trace the recursive array sum algorithm for the following arrays.Show to each recursive call the input array, 
-# the returned value, and the number of sums executed. At the end of the trace, present the total number of sums executed (the total of sums of all recursive calls.
-
+# Jesse Reid CSC6013 In Class Exercise E7 Array Sum
 
 # recursive function to find the sum of an array
 def arraySum(A, start, end, sos):
